@@ -38,9 +38,42 @@ def check_split(user, x, y):
         or cr_grid[x][y][1] == 4:
         split(user, x, y)
 
+def is_end():
+    end = True
+    true = 0
+    false = 0
+    for each_row in cr_grid:
+        for each_cell in each_row:
+            if each_cell[0] is None:
+                pass
+            elif each_cell[0]:
+                true += 1
+            else:
+                false += 1
+    if true == 0 or false == 0:
+        return True
+    else:
+        return False
+
+def play():
+    i = 0
+    turn = True
+    while True:
+        pprint(cr_grid)
+        i += 1
+        print("Add input for {}".format(turn))
+        x = int(input("x (0, 8): "))
+        y = int(input("y (0, 5): "))
+        put_weight(turn, x, y)
+        turn = not turn
+        if is_end() and i > 1:
+            pprint(cr_grid)
+            print("The game has ended : {} won".format(not turn))
+            sys.exit(0)
+'''
 if __name__ == "__main__":
     pprint(cr_grid)
-    put_weight(True, 0, 0)
+    put_weight(False, 0, 0)
     #    pprint(cr_grid)
     put_weight(False, 0, 5)
     put_weight(False, 8, 0)
@@ -51,3 +84,6 @@ if __name__ == "__main__":
     for i in range(4):
         put_weight(False, 4,3)
         pprint(cr_grid)
+'''
+
+play()
